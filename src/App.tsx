@@ -1,7 +1,7 @@
 import { useCallback, useReducer } from 'react'
 
-import { Task } from './app.type'
-import { reducer } from './app.reducer'
+import { Task } from './interfaces'
+import { reducer } from './reducers/immutable'
 
 import Items from './components'
 

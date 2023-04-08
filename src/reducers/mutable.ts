@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-import { Action, State } from './app.type'
+import { Action, State } from '../interfaces'
 
 export const reducer = (tasks: State, action: Action): State => {
   switch (action.type) {
