@@ -1,0 +1,23 @@
+.item {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 8px 16px;
+}
+
+.item.removed {
+  text-decoration: line-through;
+}
+
+.item > p {
+  margin: 0;
+  border-radius: 4px;
+  backdrop-filter: drop-shadow(4px 4px 10px blue);
+}
+
+.item > .actions {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+  align-items: center;  
+}
