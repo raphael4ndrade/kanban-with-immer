@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { ArrowLeft, ArrowRight, Add, Remove } from '../assets'
 import './components.css'
 
 type DefaultProps = {
@@ -27,12 +28,18 @@ const ToDoItem = (props: ToDoProps) => {
       <p>{props.description}</p>
       {hasBeenRemoved ? (
         <div className='actions'>
-          <button onClick={() => props.onAdd(props.id)}>+</button>
+          <button onClick={() => props.onAdd(props.id)}>
+            <Add />
+          </button>
         </div>
       ) : (
         <div className='actions'>
-          <button onClick={() => props.onGoForwards(props.id)}>{'->'}</button>
-          <button onClick={() => props.onRemove(props.id)}>x</button>
+          <button onClick={() => props.onGoForwards(props.id)}>
+            <ArrowRight />
+          </button>
+          <button onClick={() => props.onRemove(props.id)}>
+            <Remove />
+          </button>
         </div>
       )}
     </div>
@@ -43,8 +50,12 @@ const DoingItem = (props: DoingProps) => (
   <div className='item'>
     <p>{props.description}</p>
     <div className='actions'>
-      <button onClick={() => props.onGoForwards(props.id)}>{'->'}</button>
-      <button onClick={() => props.onGoBackwards(props.id)}>{'<-'}</button>
+      <button onClick={() => props.onGoForwards(props.id)}>
+        <ArrowRight />
+      </button>
+      <button onClick={() => props.onGoBackwards(props.id)}>
+        <ArrowLeft />
+      </button>
     </div>
   </div>
 )
@@ -53,7 +64,9 @@ const DoneItem = (props: DoneProps) => (
   <div className='item'>
     <p>{props.description}</p>
     <div className='actions'>
-      <button onClick={() => props.onGoBackwards(props.id)}>{'<-'}</button>
+      <button onClick={() => props.onGoBackwards(props.id)}>
+        <ArrowLeft />
+      </button>
     </div>
   </div>
 )
