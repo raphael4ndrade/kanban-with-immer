@@ -1,7 +1,7 @@
 import { useCallback, useReducer } from 'react'
 
 import { Task } from './interfaces'
-import { reducer } from './reducers/immutable'
+import { reducer } from './reducers/with-immer'
 
 import Items from './components'
 
@@ -19,6 +19,10 @@ function App() {
     description && dispatch({ type: 'add', payload: description })
   }, [])
 
+  const handleReAdd = useCallback((id: string) => {
+    dispatch({ type: 're-add', payload: id })
+  }, [])
+
   const handleDelete = useCallback((id: string) => {
     dispatch({ type: 'remove', payload: id })
   }, [])
@@ -28,7 +32,7 @@ function App() {
   }, [])
 
   const handleGoBackwards = useCallback((id: string) => {
-    dispatch({ type: 'go-backward', payload: id })
+    dispatch({ type: 'go-backwards', payload: id })
   }, [])
 
   return (
@@ -43,6 +47,7 @@ function App() {
               {...todo}
               onGoForwards={handleGoForwards}
               onRemove={handleDelete}
+              onAdd={handleReAdd}
             />
           ))}
         </div>

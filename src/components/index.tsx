@@ -11,11 +11,13 @@ type Functions = {
   onGoForwards: (id: string) => void
   onGoBackwards: (id: string) => void
   onRemove: (id: string) => void
+  onAdd: (id: string) => void
 }
 
 type ToDoProps = DefaultProps & Omit<Functions, 'onGoBackwards'>
-type DoingProps = DefaultProps & Omit<Functions, 'onRemove'>
-type DoneProps = DefaultProps & Omit<Functions, 'onGoForwards' | 'onRemove'>
+type DoingProps = DefaultProps & Omit<Functions, 'onRemove' | 'onAdd'>
+type DoneProps = DefaultProps &
+  Omit<Functions, 'onGoForwards' | 'onRemove' | 'onAdd'>
 
 const ToDoItem = (props: ToDoProps) => {
   const hasBeenRemoved = props.state === 'removed'
@@ -23,7 +25,11 @@ const ToDoItem = (props: ToDoProps) => {
   return (
     <div className={`item ${hasBeenRemoved ? 'removed' : ''}`}>
       <p>{props.description}</p>
-      {!hasBeenRemoved && (
+      {hasBeenRemoved ? (
+        <div className='actions'>
+          <button onClick={() => props.onAdd(props.id)}>+</button>
+        </div>
+      ) : (
         <div className='actions'>
           <button onClick={() => props.onGoForwards(props.id)}>{'->'}</button>
           <button onClick={() => props.onRemove(props.id)}>x</button>

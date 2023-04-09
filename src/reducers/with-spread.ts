@@ -20,6 +20,13 @@ export const reducer = (tasks: State, action: Action): State => {
         }
         return task
       })
+    case 're-add':
+      return tasks.map((task) => {
+        if (task.id === action.payload) {
+          task.state = 'to-do'
+        }
+        return task
+      })
     case 'go-fowards':
       return tasks.map((task) => {
         if (task.id === action.payload) {
@@ -27,7 +34,7 @@ export const reducer = (tasks: State, action: Action): State => {
         }
         return task
       })
-    case 'go-backward':
+    case 'go-backwards':
       return tasks.map((task) => {
         if (task.id === action.payload) {
           task.state = task.state === 'done' ? 'doing' : 'to-do'
